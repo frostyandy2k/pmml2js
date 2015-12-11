@@ -48,3 +48,7 @@ QUnit.test("binary search tree as decision tree test", function(assert){
 ```
 
 Examples are also available as QUnit tests.
+
+#### Running the Tests 
+
+To run the tests open ./pmml2js/test.html in the browser of your choice :)

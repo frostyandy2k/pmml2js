@@ -7,15 +7,17 @@ This projects aims on allowing PMML to JavaScript Code transformation so that yo
 The decision tree engine was created by artistoex.
 
 Code Attribution
-Author: artistoex
-Source: http://stackoverflow.com/questions/8368698/how-to-implement-a-decision-tree-in-javascript-looking-for-a-better-solution-th/8369235#8369235
-Date:  Dec 3 '11 at 16:50
-SO License: CC-Wiki
-No other License Mentioned (Checked on Dec. 11 2015)
+
+* Author: artistoex
+* Source: http://stackoverflow.com/questions/8368698/how-to-implement-a-decision-tree-in-javascript-looking-for-a-better-solution-th/8369235#8369235
+* Date:  Dec 3 '11 at 16:50
+* SO License: CC-Wiki
+* No other License Mentioned (Checked on Dec. 11 2015)
 
 Notes (Andrei Miclaus):
-Depth First Search through the tree.
-Supports non-binary decision trees.
+
+* Depth First Search through the tree.
+* Supports non-binary decision trees.
 
 ### Usage Examples
 

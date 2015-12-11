@@ -15,9 +15,9 @@ QUnit.test("decision tree test 1", function(assert){
 
 /**
 Tree (Sort):
-            5
-     3              8
-1       2       7       9
+              5
+     3                 8
+<3       >3       <8       >8
 
 **/
 QUnit.test("binary search tree as decision tree test", function(assert){

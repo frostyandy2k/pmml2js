@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_2 http://www.dmg.org/v4-2/pmml-4-2.xsd">
+ <Header copyright="Copyright (c) 2015 bachmann" description="RPart Decision Tree Model">
+  <Extension name="user" value="bachmann" extender="Rattle/PMML"/>
+  <Application name="Rattle/PMML" version="1.4"/>
+  <Timestamp>2015-12-08 11:51:47</Timestamp>
+ </Header>
+ <DataDictionary numberOfFields="5">
+  <DataField name="Species" optype="categorical" dataType="string">
+   <Value value="setosa"/>
+   <Value value="versicolor"/>
+   <Value value="virginica"/>
+  </DataField>
+  <DataField name="Sepal.Length" optype="continuous" dataType="double"/>
+  <DataField name="Sepal.Width" optype="continuous" dataType="double"/>
+  <DataField name="Petal.Length" optype="continuous" dataType="double"/>
+  <DataField name="Petal.Width" optype="continuous" dataType="double"/>
+ </DataDictionary>
+ <TreeModel modelName="RPart_Model" functionName="classification" algorithmName="rpart" splitCharacteristic="binarySplit">
+     <MiningSchema>
+      <MiningField name="Species" usageType="predicted"/>
+      <MiningField name="Sepal.Length" usageType="active"/>
+      <MiningField name="Sepal.Width" usageType="active"/>
+      <MiningField name="Petal.Length" usageType="active"/>
+      <MiningField name="Petal.Width" usageType="active"/>
+     </MiningSchema>
+     <Node id="1">
+      <True/>
+      <Node id="2" score="setosa">
+       <SimplePredicate field="Petal.Width" operator="lessOrEqual" value="0.80000000000000004"/>
+      </Node>
+      <Node id="3">
+       <SimplePredicate field="Petal.Width" operator="greaterThan" value="0.80000000000000004"/>
+       <Node id="4">
+        <SimplePredicate field="Petal.Width" operator="lessOrEqual" value="1.6499999999999999"/>
+        <Node id="6">
+         <SimplePredicate field="Petal.Length" operator="lessOrEqual" value="5.3499999999999996"/>
+         <Node id="10">
+          <SimplePredicate field="Sepal.Width" operator="lessOrEqual" value="2.25"/>
+          <Node id="14" score="versicolor">
+           <SimplePredicate field="Petal.Length" operator="lessOrEqual" value="4.75"/>
+          </Node>
+          <Node id="15" score="virginica">
+           <SimplePredicate field="Petal.Length" operator="greaterThan" value="4.75"/>
+          </Node>
+         </Node>
+         <Node id="11" score="versicolor">
+          <SimplePredicate field="Sepal.Width" operator="greaterThan" value="2.25"/>
+         </Node>
+        </Node>
+        <Node id="7" score="virginica">
+         <SimplePredicate field="Petal.Length" operator="greaterThan" value="5.3499999999999996"/>
+        </Node>
+       </Node>
+       <Node id="5">
+        <SimplePredicate field="Petal.Width" operator="greaterThan" value="1.6499999999999999"/>
+        <Node id="8">
+         <SimplePredicate field="Petal.Length" operator="lessOrEqual" value="5.0499999999999998"/>
+         <Node id="12">
+          <SimplePredicate field="Sepal.Length" operator="lessOrEqual" value="6.5"/>
+          <Node id="16" score="virginica">
+           <SimplePredicate field="Sepal.Width" operator="lessOrEqual" value="3.1000000000000001"/>
+          </Node>
+          <Node id="17" score="versicolor">
+           <SimplePredicate field="Sepal.Width" operator="greaterThan" value="3.1000000000000001"/>
+          </Node>
+         </Node>
+         <Node id="13" score="versicolor">
+          <SimplePredicate field="Sepal.Length" operator="greaterThan" value="6.5"/>
+         </Node>
+        </Node>
+        <Node id="9" score="virginica">
+         <SimplePredicate field="Petal.Length" operator="greaterThan" value="5.0499999999999998"/>
+        </Node>
+       </Node>
+      </Node>
+     </Node>
+    </TreeModel>
+</PMML>

@@ -31,7 +31,7 @@
 	<xsl:template match="pmml:TreeModel">
 		/* Decision Tree <xsl:value-of select="@modelName"/>*/
 
-		var decisionTree = <xsl:apply-templates select="pmml:Node"/>
+		<xsl:apply-templates select="pmml:Node"/>
 	</xsl:template>
 
 	<xsl:template match="pmml:Node">

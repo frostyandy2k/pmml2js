@@ -19,9 +19,11 @@ Notes (Andrei Miclaus):
 * Depth First Search through the tree.
 * Supports non-binary decision trees.
 
-### Usage Examples
+### Decision Tree Usage Examples
 
-#### Example 1
+All examples are available as QUnit tests.
+
+#### Example 1: Creating a decision tree for binary sorting
 
 ```
 /**
@@ -49,7 +51,7 @@ QUnit.test("binary search tree as decision tree test", function(assert){
 })
 ```
 
-#### Example 2
+#### Example 2: Creating a decision tree for the Iris Dataset
 ```
 /**
 Tree (Sort):
@@ -102,9 +104,29 @@ QUnit.test("binary search tree as decision tree test", function(assert){
 })
 ```
 
+### Using the API for Generating Executable Models
 
-Examples are also available as QUnit tests.
+##### Example 1: Requesting a decision tree for the Iris Dataset
 
-#### Running the Tests 
+```
+var decisionTree;
+//define the callback function used to evaluate the model
+function evaluate(generatedDecisionTree){
+  //initialise your variable with the value of the generated model
+  decisionTree = generatedDecisionTree;
 
-To run the tests open ./pmml2js/test.html in the browser of your choice :)
+  //test methods
+  assert.ok(decisionTree.evaluate(dataset[0]).result == "setosa", "Correctly classified as setosa!");
+  assert.ok(decisionTree.evaluate(dataset[1]).result == "versicolor", "Correctly classified as versicolor!");
+  assert.ok(decisionTree.evaluate(dataset[2]).result == "virginica", "Correctly classified as virginica!");
+
+  //qunit helper for asynchronous tasks
+  done();
+}
+
+initiateExecutableModel("http://localhost:3000/models/test_rpart.xml", "http://localhost:3000/pmml2js_decision_tree.xsl", evaluate);
+```
+
+### Running the Tests 
+
+To run the tests open ./pmml2js/tests/*.html in the browser of your choice.

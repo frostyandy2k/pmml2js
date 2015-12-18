@@ -11,7 +11,7 @@ function ajaxRequestPromise(method, url, responseType) {
     });
 }
 
-function getExecutableModel(modelUrl, transformSheetUrl, evaluateableFunction) {
+function initiateExecutableModel(modelUrl, transformSheetUrl, evaluateableFunction) {
   xmlreq = ajaxRequestPromise("GET", modelUrl, "xml");
   xslreq = ajaxRequestPromise("GET", transformSheetUrl, "xml");
 

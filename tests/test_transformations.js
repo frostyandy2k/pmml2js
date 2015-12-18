@@ -99,12 +99,21 @@ QUnit.test("Decision Tree With Live Generation Test RPart", function(assert){
       Sepal_Width : "13"
     }
 
-    function evaluate(decisiontree){
-      assert.ok(decisiontree.evaluate(dataset[0]).result == "setosa", "Correctly classified as setosa!");
-      assert.ok(decisiontree.evaluate(dataset[1]).result == "versicolor", "Correctly classified as versicolor!");
-      assert.ok(decisiontree.evaluate(dataset[2]).result == "virginica", "Correctly classified as virginica!");
+    var done = assert.async();
+
+    var decisionTree;
+    function evaluate(generatedDecisionTree){
+      //initialise your variable with the value of the generated model
+      decisionTree = generatedDecisionTree;
+
+      assert.ok(decisionTree.evaluate(dataset[0]).result == "setosa", "Correctly classified as setosa!");
+      assert.ok(decisionTree.evaluate(dataset[1]).result == "versicolor", "Correctly classified as versicolor!");
+      assert.ok(decisionTree.evaluate(dataset[2]).result == "virginica", "Correctly classified as virginica!");
+
+      //qunit helper for asynchronous tasks
+      done();
     }
 
-    decisionTreeObj = getExecutableModel("http://localhost:3000/models/test_rpart.xml", "http://localhost:3000/pmml2js_decision_tree.xsl", evaluate);
-    assert.ok(decisionTreeObj != undefined, "Promise object is defined");
+    initiateExecutableModel("http://localhost:3000/models/test_rpart.xml", "http://localhost:3000/pmml2js_decision_tree.xsl", evaluate);
+    
 })

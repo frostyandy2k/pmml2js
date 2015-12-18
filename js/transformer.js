@@ -1,39 +1,51 @@
-/** 
-Inspired by http://www.w3schools.com/xsl/xsl_client.asp 
-**/
-function ajaxRequest(method, url, responseType) {
+"use strict;"
+
+function ajaxRequestPromise(method, url, responseType) {
+  return $.ajax({
+      method: method,
+      url: url,
+      dataType: responseType
+    })
+    .done(function(msg) {
+      $(this).add
+    });
+}
+
+function getExecutableModel(modelUrl, transformSheetUrl, evaluateableFunction) {
+  xmlreq = ajaxRequestPromise("GET", modelUrl, "xml");
+  xslreq = ajaxRequestPromise("GET", transformSheetUrl, "xml");
+
+  var executableModel;
+  
+  return $.when(xmlreq, xslreq).done(function(xmlreq, xslreq) {
+    // the first element of the response is a document object
+    xmldocument = xmlreq[0];
+    xsldocument = xslreq[0];
+    // Handle both XHR objects
+    generated_code = transform(xmldocument, xsldocument).code;
+    executableModel = eval(generated_code);
+    
+    evaluateableFunction(executableModel);
+
+  });
+
+  return executableModel;
+}
+
+function transform(xmldocument, xsldocument) {
+  // IE specific code - not tested
   if (window.ActiveXObject) {
-    if(responseType == "msxml-document")
-      responseType = "Msxml2.XMLHTTP"
-    xhttp = new ActiveXObject(responseType);
-  } else {
-    xhttp = new XMLHttpRequest();
-  }
-  xhttp.open(method, url, false);
-  try {
-    xhttp.responseType = "msxml-document"
-  } catch (err) {} // IE11 catch
-  xhttp.send("");
-  return xhttp.responseXML;
-}
-
-function transform(xmlfile, xslfile) {
-  xml = ajaxRequest("GET", xmlfile, "msxml-document");
-  xsl = ajaxRequest("GET", xslfile, "msxml-document");
-  // IE specific code
-  if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
-    ex = xml.transformNode(xsl);
+    ex = xmldocument.transformNode(xsldocument);
     return ex;
-  }
-  // code for Chrome, Firefox, Opera, etc.
-  else if (documentImplementationAvailable()) {
+  } else if (documentImplementationAvailable()) {
     xsltProcessor = new XSLTProcessor();
-    xsltProcessor.importStylesheet(xsl);
-    resultDocument = xsltProcessor.transformToFragment(xml, document);
-    return resultDocument;
+    y = xsltProcessor;
+    xsltProcessor.importStylesheet(xsldocument);
+    resultDocument = xsltProcessor.transformToFragment(xmldocument, document);
+    return {code: resultDocument.textContent};
   }
 }
 
-function documentImplementationAvailable(){
+function documentImplementationAvailable() {
   return document.implementation && document.implementation.createDocument;
 }

@@ -9,6 +9,7 @@
   "author": "Andrei Miclaus",
   "license": "MIT",
   "dependencies": {
+    "jquery": "^2.1.4",
     "underscore": "^1.8.3"
   }
 }

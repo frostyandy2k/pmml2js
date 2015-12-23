@@ -2,6 +2,12 @@
 
 This projects aims on allowing PMML to JavaScript Code transformation so that you can run it in your browser.
 
+Currently supported are:
+
+* Decision Trees
+* Random Forests (comming soon)
+* Baysian Classifiers (comming soon)
+
 ## Decision Trees
 
 The decision tree engine was created by artistoex.

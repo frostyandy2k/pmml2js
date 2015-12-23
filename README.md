@@ -106,6 +106,8 @@ QUnit.test("binary search tree as decision tree test", function(assert){
 
 ### Using the API for Generating Executable Models
 
+To use the examples, you need resolvable URLs to xml and xsl files. You can get and run the server used in the example below (including xml and xsl example files) from here [Analytics Host](https://github.com/frostyandy2k/analytics_host).
+
 ##### Example 1: Requesting a decision tree for the Iris Dataset
 
 ```
